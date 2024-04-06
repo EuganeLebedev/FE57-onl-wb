@@ -1,0 +1,41 @@
+$swiper-navigation-color: #df34d2;
+$swiper-navigation-next: #8306f7;
+$swiper-theme-color: #df34d2;
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 55px 25px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 25px ;
+}
+
+.swiper-button-prev {
+  color: $swiper-navigation-color;
+}
+
+.swiper-button-next {
+  color: $swiper-navigation-next;
+}
+
+.swiper-pagination-bullet-active {
+  background: $swiper-navigation-color !important;
+}
