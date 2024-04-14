@@ -34,6 +34,7 @@
                             <path d="m211.875,124.513v-33.513c0-50.178-40.822-91-91-91s-91,40.822-91,91v33.513c-4,0.134-8,3.765-8,8.237v0.5c0,4.557 4.026,8.5 8.583,8.5h13.341l10.275,90.064c0.624,5.465 5.634,9.936 11.134,9.936h112c5.5,0 10.481-4.475 11.067-9.942l9.671-90.058h14.012c4.557,0 7.917-3.943 7.917-8.5v-0.5c0-4.473-3-8.104-8-8.237zm-91-107.513c40.804,0 74,33.196 74,74v1.75h-148v-1.75c0-40.804 33.196-74 74-74z"/>
                         </g>
                     </svg>
+                    <span class="header__busket-count"></span>
                 </div>
             </div>
         </div>
@@ -44,19 +45,16 @@
             <div class="swiper topProductsSwipper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="https://random.imagecdn.app/500/150"/>
+                        <img src="img/slides/1.jpeg"/>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://random.imagecdn.app/500/150"/>
+                        <img src="img/slides/2.jpeg"/>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://random.imagecdn.app/500/150"/>
+                        <img src="img/slides/3.jpeg"/>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://random.imagecdn.app/500/150"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://random.imagecdn.app/500/150"/>
+                        <img src="img/slides/4.jpg"/>
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -69,39 +67,6 @@
     <section class="products">
         <div class="products__container">
             <ul class="products__list">
-                <li class="product__container">
-                    <div class="product__image-wrapper">
-                        <img class="product__image" src="https://random.imagecdn.app/250/250/">
-                    </div>
-                    <a class="product__preview_wrapper" href="#detailed_1">
-                        Preview
-                    </a>
-                    <div class="product__description">
-                        <h2 class="product__name">My product</h2>
-                        <p>Price <span>999</span> EUR</p><button class="product__add" type="button">Add</button>
-                    </div>
-                    <div class="product__detailed" id="detailed_1">
-                        <div href="#header" class="search__area">
-                            <div class="detailed__wrapper">
-                                <div class="detailed__img-wrapper">
-                                    <img class="detailed__img" src="https://random.imagecdn.app/250/250/">
-                                </div>
-                                <div class="detailed__info-wrapper">
-                                    <div class="detailed__info">
-                                        <h2 lass="detailed__name">Detailed name</h2>
-                                        <p class="detailed__description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                    </div>
-                                    <div class="detailed__buttons">
-                                        <p>Price <span>999</span> EUR</p><button class="product__add" type="button">Add</button>
-                                    </div>
-                                    <a href="#header" class="detailed__close">X</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </li>
             </ul>
         </div>
     </section>
@@ -119,6 +84,10 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/swiper.js"></script>
+    <script type="module" src="./js/cart.js"></script>
+    <script type="module" src="./js/utils.js"></script>
+    <script type="module" src="./js/swiper.js"></script>
+    <script type="module" src="./js/catalog.js"></script>
+
 </body>
 </html>
