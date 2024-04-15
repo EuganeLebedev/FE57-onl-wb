@@ -1,72 +1,12 @@
-import { randomInteger } from "./utils.js"
-// import { Cart } from "./cart.js"
-
-class Cart {
-
-    constructor(cartId) {
-        this.cartId = cartId
-        if (!sessionStorage.getItem(this.cartId)) {
-            sessionStorage.setItem(this.cartId, JSON.stringify([]))
-        }
-    }
-
-    getCart = () => {
-        let cart = sessionStorage.getItem(this.cartId)
-        return JSON.parse(cart)
-    }
-
-    getProduct = (productID) => {
-        if (!productID) {
-            return undefined
-        }
-        let cart = JSON.parse(sessionStorage.getItem(this.cartId)) || new Array()
-        let product = cart.find(obj => obj.id === productID);
-        return product
-    }
-
-    setQuantity(productID, quantity) {
-        if (!productID) {
-            return undefined
-        }
-        let cart = JSON.parse(sessionStorage.getItem(this.cartId)) || new Array()
-        let product = cart.find(obj => obj.id === productID);
-        product.quantity = quantity
-
-    }
-
-    addToCart = (event) => {
-        event.stopPropagation()
-        event.preventDefault()
-        const productForm = event.target.closest(".product__form")
-        let productID = Number(event.target.closest(".product__container").id)
-        const productQuantityNode = productForm.querySelector(".product__quantity")
-        let quantity = Number(productQuantityNode.value)
-        let cart = this.getCart()
-        let product = cart.find(obj => obj.id === productID);
-        if (product) {
-            if (quantity === 0) {
-                cart = cart.filter(obj => obj.id !== productID);
-                productForm.classList.remove("ordered");
-                productQuantityNode.value = 1;
-
-            } else {
-                product.quantity = quantity;
-                productForm.classList.add("ordered");
-
-            }
-        } else if (quantity > 0) {
-            cart.push({"id": productID, "quantity": quantity})
-            productForm.classList.add("ordered")
-        }
-        sessionStorage.setItem(this.cartId, JSON.stringify(cart))
-        setBusketCount()
-
-    }
-}
+import { Cart } from "./cart.js"
 
 let storageCart = new Cart("wbCart");
 const apiUrl = 'http://127.0.0.1:8000';
 
+function randomInteger(min, max) {
+    let rand = min + Math.random() * (max - min);
+    return Math.round(rand);
+}
 
 async function getProducts() {
     try {
@@ -82,6 +22,7 @@ async function getProducts() {
 
 function addItems(products) {
     const ul = document.querySelector(".products__list")
+    ul.innerHTML = ""
     products.forEach(product => {
         const img_id = randomInteger(1,5);
         const li = document.createElement('li');
@@ -91,7 +32,7 @@ function addItems(products) {
         li.id = `${product.id}`
         li.innerHTML = `
                     <div class="product__image-wrapper">
-                        <img class="product__image" src="img/products/${img_id}.webp" alt="No image found">
+                        <img class="product__image" src="http://127.0.0.1:8000/file/product?id=${img_id}" alt="No image found">
                     </div>
                     <a class="product__preview_wrapper" href="#detailed_${product.id}">
                         Preview
@@ -105,7 +46,7 @@ function addItems(products) {
                                     <input type="number" class="product__quantity" value="${productInCart? productInCart.quantity : 1}" min="0" readonly>
                                     <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
                                 </div>
-                                <button class="product__add" type="submit">Add</button>
+                                <button class="btn product__add" type="submit">Add</button>
                             </form>
                     
                     </div>
@@ -113,7 +54,7 @@ function addItems(products) {
                         <div href="#header" class="search__area">
                             <div class="detailed__wrapper">
                                 <div class="detailed__img-wrapper">
-                                    <img class="detailed__img" src="img/products/${img_id}.webp">
+                                    <img class="detailed__img" src="http://127.0.0.1:8000/file/product?id=${img_id}" alt="No image found">
                                 </div>
                                 <div class="detailed__info-wrapper">
                                     <div class="detailed__info">
@@ -128,7 +69,7 @@ function addItems(products) {
                                                 <input type="number" class="product__quantity" value="${productInCart? productInCart.quantity : 1}" min="0" readonly>
                                                 <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
                                             </div>
-                                            <button class="product__add" type="submit">Add</button>
+                                            <button class="btn product__add" type="submit">Add</button>
                                         </form>
                                     </div>
                                     <a href="#header" class="detailed__close">X</a>
@@ -153,4 +94,20 @@ function setBusketCount () {
     busketCount.innerHTML = cart ? cart.length : ''
 }
 
+async function searchProducts (event) {
+    const searchInput = document.querySelector(".search__input")
+    if (!searchInput) {
+        return
+    }
+    event.preventDefault()
+    let products = await getProducts();
+    products = products.filter(obj => obj.name.includes(searchInput.value));
+    addItems(products)
+    searchInput.value = ""
+}
+
 getProducts().then(products => {addItems(products)});
+const searchSubmit = document.querySelector(".search__submit")
+searchSubmit.addEventListener("click", searchProducts)
+
+export { setBusketCount }

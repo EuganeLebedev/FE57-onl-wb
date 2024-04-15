@@ -14,7 +14,7 @@
     <title>WB clone repack final v1</title>
 </head>
 <body>
-    <header id="header">
+    <header class="header" id="header">
         <div class="container header__container">
             <a href="#" class="header__logo">
                 <svg class="svg-icon icon-wb-header-logo" xmlns="http://www.w3.org/2000/svg">
@@ -28,17 +28,18 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0392 15.6244C18.2714 14.084 19.0082 12.1301 19.0082 10.0041C19.0082 5.03127 14.9769 1 10.0041 1C5.03127 1 1 5.03127 1 10.0041C1 14.9769 5.03127 19.0082 10.0041 19.0082C12.1301 19.0082 14.084 18.2714 15.6244 17.0392L21.2921 22.707C21.6828 23.0977 22.3163 23.0977 22.707 22.707C23.0977 22.3163 23.0977 21.6828 22.707 21.2921L17.0392 15.6244ZM10.0041 17.0173C6.1308 17.0173 2.99087 13.8774 2.99087 10.0041C2.99087 6.1308 6.1308 2.99087 10.0041 2.99087C13.8774 2.99087 17.0173 6.1308 17.0173 10.0041C17.0173 13.8774 13.8774 17.0173 10.0041 17.0173Z" fill="#0F0F0F"/>
                     </svg>
                 </a>
-                <div href="#" class="header__busket">
+                <a href="#cart" class="header__busket">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" viewBox="0 0 241.75 241.75" enable-background="new 0 0 241.75 241.75">
                         <g>
                             <path d="m211.875,124.513v-33.513c0-50.178-40.822-91-91-91s-91,40.822-91,91v33.513c-4,0.134-8,3.765-8,8.237v0.5c0,4.557 4.026,8.5 8.583,8.5h13.341l10.275,90.064c0.624,5.465 5.634,9.936 11.134,9.936h112c5.5,0 10.481-4.475 11.067-9.942l9.671-90.058h14.012c4.557,0 7.917-3.943 7.917-8.5v-0.5c0-4.473-3-8.104-8-8.237zm-91-107.513c40.804,0 74,33.196 74,74v1.75h-148v-1.75c0-40.804 33.196-74 74-74z"/>
                         </g>
                     </svg>
                     <span class="header__busket-count"></span>
-                </div>
+                </a>
             </div>
         </div>
     </header>
+
 
     <section class="top_products">
         <div class="top_products__container">
@@ -72,7 +73,7 @@
     </section>
 
     <section id="search" class="search">
-            <a href="#header" class="search__area"></a>
+            <a href="#header" class="popup__area"></a>
             <form class="container search__container">
                 <input type="text" class="search__input">
                 <button type="button" class="search__submit">
@@ -83,11 +84,24 @@
             </form>
     </section>
 
+    <section id="cart" class="cart">
+        <a href="#header" class="cart popup__area"></a>
+        <div class="container cart__container">
+            <ul class="cart__items">
+            </ul>
+            <button type="button" class="btn cart__submit">
+                Process
+            </button>
+            <a href="#header" class="cart__close">X</a>
+        </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" src="./js/cart.js"></script>
-    <script type="module" src="./js/utils.js"></script>
-    <script type="module" src="./js/swiper.js"></script>
-    <script type="module" src="./js/catalog.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/swiper.js"></script>
+    <script type="module" src="js/catalog.js"></script>
+    <script type="module" src="js/navbar.js"></script>
 
 </body>
 </html>
