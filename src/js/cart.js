@@ -129,7 +129,9 @@ async function fillCart (event) {
         ul.appendChild(li);
         li.querySelector(".product__remove").addEventListener("click", storageCart.removeFromCart)
     }
-    console.log(total)
+    let totalNode = document.createElement('span');
+    totalNode.innerHTML = `Total ordered ${total} EUR`
+    ul.after(totalNode)
 }
 
 cartBtn.addEventListener("click", displayCart)
