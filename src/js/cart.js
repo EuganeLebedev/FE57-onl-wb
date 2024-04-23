@@ -49,26 +49,38 @@ class Cart {
 
     addToCart = (event) => {
         event.preventDefault()
-        const productForm = event.target.closest(".product__form")
         let productID = Number(event.target.closest(".product__container").id)
-        const productQuantityNode = productForm.querySelector(".product__quantity")
+        let productNode = document.getElementById(`${productID}`)
+        const productQuantityNode = event.target.closest(".product__form").querySelector(".product__quantity")
+        const productForms = productNode.querySelectorAll(".product__form")
         let quantity = Number(productQuantityNode.value)
         let cart = this.getCart()
         let product = cart.find(obj => obj.id === productID);
         if (product) {
             if (quantity === 0) {
                 cart = cart.filter(obj => obj.id !== productID);
-                productForm.classList.remove("ordered");
-                productQuantityNode.value = 1;
+                productForms.forEach(productForm => {
+                    productForm.classList.remove("ordered");
+                    let formQuantityNode = productForm.querySelector(".product__quantity")
+                    formQuantityNode.value = 1;
+                })
 
             } else {
                 product.quantity = quantity;
-                productForm.classList.add("ordered");
+                // productForm.classList.add("ordered");
+                productForms.forEach(productForm => {
+                    productForm.classList.add("ordered");
+                    let formQuantityNode = productForm.querySelector(".product__quantity")
+                    formQuantityNode.value = quantity;
+                })
 
             }
         } else if (quantity > 0) {
             cart.push({"id": productID, "quantity": quantity})
-            productForm.classList.add("ordered")
+            // productForm.classList.add("ordered")
+            productForms.forEach(productForm => {
+                productForm.classList.add("ordered");
+            })
         }
         sessionStorage.setItem(this.cartId, JSON.stringify(cart))
         this.setBusketCount()
